@@ -5,10 +5,13 @@
 Place the asset that needs to be converted at the following place `<root>/input/tileset.json` and run the following command:
 
 ```
-npx ts-node MakeUnlit.ts
+npx ts-node RecomputeGeometricError.ts
 ```
 
-The converted asset will show up here: `<root>/output`
+You can also provide a parameters for a custom input path and a scale factor that is multiplied to the geometric error output.
+e.g. `npx ts-node RecomputeGeometricError.ts C:/path/to/your/tileset 2`
+
+The Tileset is converted in place.
 
 When running the script for the first time, make sure to run `npm i` first.
 
