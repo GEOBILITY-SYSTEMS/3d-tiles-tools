@@ -16,8 +16,9 @@ function recomputeGeometricError(tileset: Tileset, scaleFactor: number) {
         xAxisHalf[1] + yAxisHalf[1],
       ];
       const halfDiagonal = Math.hypot(cornerVector[0], cornerVector[1]);
-      tile.geometricError = 2 * halfDiagonal * scaleFactor;
-      return tile.geometricError;
+      const result = 2 * halfDiagonal * scaleFactor;
+      tile.geometricError = result;
+      return result;
     }
     return 0;
   };
@@ -35,7 +36,8 @@ function recomputeGeometricError(tileset: Tileset, scaleFactor: number) {
 
   const root = tileset.root;
   if (root) {
-    root.geometricError = processTile(root);
+    tileset.geometricError = processTile(root);
+    root.geometricError = tileset.geometricError;
     processChildren(root);
   }
 }
@@ -56,7 +58,10 @@ async function processTilesetJson(fileName: string, scaleFactor: number) {
 }
 
 // Recursively upgrades all JSON files in a directory
-async function processTilesetJsonInDirectory(directory: string, scaleFactor: number) {
+async function processTilesetJsonInDirectory(
+  directory: string,
+  scaleFactor: number
+) {
   const files = fs.readdirSync(directory);
 
   for (const file of files) {
