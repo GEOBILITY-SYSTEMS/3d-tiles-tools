@@ -1,6 +1,6 @@
 # 3D Tiles Tools
 
-## Converting 3dtiles to unlit
+## Recompute geometric error
 
 Place the asset that needs to be converted at the following place `<root>/input/tileset.json` and run the following command:
 
